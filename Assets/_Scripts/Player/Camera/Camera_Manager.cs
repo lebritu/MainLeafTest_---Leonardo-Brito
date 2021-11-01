@@ -88,7 +88,7 @@ public class Camera_Manager : MonoBehaviour
         float mouseY = Input.GetAxis(PM.input_M.MouseY);
 
         rotY += mouseX * sensibilidade_camera * Time.deltaTime;
-        rotX += mouseY * sensibilidade_camera * Time.deltaTime;
+        rotX += -mouseY * sensibilidade_camera * Time.deltaTime;
 
         rotX = Mathf.Clamp(rotX, -limiteVertical_camera, limiteVertical_camera);
 

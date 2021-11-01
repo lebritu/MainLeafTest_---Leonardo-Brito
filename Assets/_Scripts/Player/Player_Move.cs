@@ -317,6 +317,9 @@ public class Player_Move : MonoBehaviour
                 case Trigger_Interativo.Select.Final:
                     GM.Final();
                     break;
+                case Trigger_Interativo.Select.Limbo:
+                    GM.Limbo();
+                    break;
             }
             if (!onGround)
             {
