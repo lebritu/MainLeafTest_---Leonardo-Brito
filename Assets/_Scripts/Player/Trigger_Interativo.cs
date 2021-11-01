@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Trigger_Interativo : MonoBehaviour
 {
-    public enum Select { Pendurar, BlockAgachar, PassaNivel, Final}
+    public enum Select { Pendurar, BlockAgachar, PassaNivel, Final, Limbo}
     public Select Tipo;
 
     public int NextNivel;
