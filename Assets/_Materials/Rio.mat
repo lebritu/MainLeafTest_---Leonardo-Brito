@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rio
+  m_Shader: {fileID: -6465566751694194690, guid: 4fa6aab73313cf9478834be5866837e4, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_0b8ec707628a483a98e834712ad07917:
+        m_Texture: {fileID: 2800000, guid: 17c3e0bb805477145b3f74fdb350fa13, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_278046a916bd4ce9ba47e1762bc3f0fc: 59.6
+    - Vector1_3f39ef65355a43599a4328b1df17b655: 1
+    - Vector1_a9e7fffd17da40e6a2ca8dfdc13696a2: 5
+    - Vector1_b300fd7b50144864a8a6e7594e45df4b: 0.6
+    - Vector1_d60925f347ce48f58a568b317219c4dd: 2
+    - Vector1_f7c5189eab4c42cbb80c4b102636fc98: 0.5
+    m_Colors:
+    - Color_646915ec26ee4cab80b9f9d569c2c8a5: {r: 2.079281, g: 3.8870897, b: 7.7606983, a: 1}
+    - Vector2_cdb8c1501f34480b80f28887c10b8857: {r: 0, g: -0.005, b: 0, a: 0}
+  m_BuildTextureStacks: []
