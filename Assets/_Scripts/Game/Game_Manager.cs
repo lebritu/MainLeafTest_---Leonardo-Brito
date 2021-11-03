@@ -49,6 +49,7 @@ public class Game_Manager : MonoBehaviour
         {
             avistado = true;
             PM.enabled = false;
+            PM.anim.SetTrigger("Idle");
             aviso_parado.SetActive(true);
             StartCoroutine("retorna_para_o_comeco");
         }
@@ -64,9 +65,9 @@ public class Game_Manager : MonoBehaviour
             Niveis[i].gameObject.SetActive(false);
         }
         yield return new WaitForSeconds(0.2f);
-        proximo_nivel_ID = 0;
-        PM.ResetGame();
+        proximo_nivel_ID = 0;       
         Niveis[0].gameObject.SetActive(true);
+        PM.ResetGame();
         yield return new WaitForSeconds(0.5f);
         fade_anim.SetTrigger("FadeOut");
         avistado = false;
@@ -83,6 +84,8 @@ public class Game_Manager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         fim_de_jogo.SetActive(true);
         yield return new WaitForSeconds(5f);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         fim_de_jogo.SetActive(false);
         menu_in_game.SetActive(true);
     }

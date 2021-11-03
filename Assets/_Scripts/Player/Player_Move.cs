@@ -38,14 +38,12 @@ public class Player_Move : MonoBehaviour
 
     [Header("AUDIO")]
     private SoundPool SP;
-    private AudioSource saida_de_som;
 
     void Start()
     {
         movimento_velocidade = padrão_velocidade;
         rotação_velocidade = padrão_rotacao_velocidade;
         SP = FindObjectOfType<SoundPool>();
-        saida_de_som = GetComponent<AudioSource>();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -59,7 +57,7 @@ public class Player_Move : MonoBehaviour
 
     private void LateUpdate()
     {
-        PuxaObjeto();
+        PuxaEmpurraObjeto();
     }
 
     void MenuControle()
@@ -219,17 +217,17 @@ public class Player_Move : MonoBehaviour
             obj_temp.transform.parent = obj_temp.pai;
         }
     } 
-    void PuxaObjeto()
+    void PuxaEmpurraObjeto()
     {
         if (agarrou)
         {
-            if (Input.GetAxisRaw(input_M.Verti) < 0)
+            if (Input.GetAxisRaw(input_M.Verti) < 0) // Puxar
             {
                 float forca = 10;
-                obj_temp.maxSpeed = 2f;
+                obj_temp.maxSpeed = 0.26f;
                 obj_temp.rb.velocity += -camera_M.posicao_camera_caixote.forward * (forca * Time.deltaTime);
             }
-            if (Input.GetAxisRaw(input_M.Verti) > 0)
+            if (Input.GetAxisRaw(input_M.Verti) > 0) // Empurrar
             {
                 float forca = 6f;
                 obj_temp.maxSpeed = 0.25f;
@@ -243,6 +241,7 @@ public class Player_Move : MonoBehaviour
         if (!escala_B && !escala_cooldown)
         {
             anim.SetTrigger("Pendurado");
+            DisplayActions("Escalando");
             escala_B = true;
             escala_cooldown = true;
             StartCoroutine("termina_de_subir");
@@ -260,6 +259,7 @@ public class Player_Move : MonoBehaviour
         yield return new WaitForSeconds(tempo_para_subir_obstaculo);
         escala_B = false;
         controller.enabled = true;
+        DisplayActions("");
         yield return new WaitForSeconds(1);
         escala_cooldown = false; // cooldown para poder subir denovo
     }
@@ -291,7 +291,7 @@ public class Player_Move : MonoBehaviour
         switch (s)
         {
             case "Land":
-                saida_de_som.PlayOneShot(SP.land, SP.volume);
+                SP.PlayAudio(SP.land);
                 break;
         }
     }
@@ -331,7 +331,6 @@ public class Player_Move : MonoBehaviour
             camera_M.TargetOffSet = other.GetComponent<CameraPoint>().Point;
         }
     }
- 
     private void OnTriggerExit(Collider other)
     {
         if (other.GetComponent<Objetos_Interagiveis>())
@@ -344,7 +343,10 @@ public class Player_Move : MonoBehaviour
             {
                 obj_temp = null;
             }
-            DisplayActions("");
+            if (!escala_B)
+            {
+                DisplayActions("");
+            }
         }
         if (other.GetComponent<Trigger_Interativo>())
         {

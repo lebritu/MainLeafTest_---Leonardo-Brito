@@ -49,6 +49,9 @@ public class NivelManager : MonoBehaviour
         PM.transform.rotation = checkpoint_posicao[0].rotation;
         CondiçõesUnicasDeNivel();
         DisplayName();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     public void ResetaNivel()
     {
@@ -73,14 +76,13 @@ public class NivelManager : MonoBehaviour
                 coletaveis[i].ResetGame();
             }
         }
-        PM.transform.position = checkpoint_posicao[0].position;
-        PM.transform.rotation = checkpoint_posicao[0].rotation;
     }
+
     public void CheckPoint()
     {
         PM.transform.position = checkpoint_posicao[checkpoint_ID].position;
         PM.transform.rotation = checkpoint_posicao[checkpoint_ID].rotation;
-    }
+    } // é uma função de checkpoint mas não utilizarei nesta build 
 
     void DisplayName()
     {
@@ -98,13 +100,19 @@ public class NivelManager : MonoBehaviour
         {
             case 1:
                 PM.camera_M.AtivaTerceiraPessoa();
-                PM.enabled = true;
                 break;
             case 2:
                 PM.camera_M.DesativarTerceiraPessoa();
-                PM.enabled = true;
                 break;
         }
+        StartCoroutine("Acorda");
+    }
+    IEnumerator Acorda()
+    {
+        yield return new WaitForSeconds(0.8f);
+        PM.anim.SetTrigger("Acorda");
+        yield return new WaitForSeconds(2f);
+        PM.enabled = true;
     }
 
     public void AtualizaCheckpoint()

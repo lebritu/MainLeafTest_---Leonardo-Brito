@@ -29,6 +29,9 @@ public class IA_Manager : MonoBehaviour
     public Transform raycast_saida;
     public LayerMask Layer;
 
+    [Header("AUDIO")]
+    private SoundPool SP;
+
     private void OnDisable()
     {
         ativo = false;
@@ -36,6 +39,7 @@ public class IA_Manager : MonoBehaviour
     }
     private void Awake()
     {
+        SP = FindObjectOfType<SoundPool>();
         posicao_inicial = transform.position;
     }
     private void Update()
@@ -129,6 +133,7 @@ public class IA_Manager : MonoBehaviour
     void Avistou()
     {
         avistou_B = true;
+        SP.PlayAudio(SP.guarda_hey);
         anim.SetTrigger("Avistou");
         agent.speed = 0;
         GM.Avistado();
@@ -147,5 +152,13 @@ public class IA_Manager : MonoBehaviour
     {
         int i = Random.Range(0, points.Length - 1);
         return i;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Player_Move>())
+        {
+            Avistou();
+        }
     }
 }
